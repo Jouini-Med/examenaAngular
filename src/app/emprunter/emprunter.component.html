@@ -1,0 +1,39 @@
+<h2>Emprunter un livre</h2>
+<form #empruntForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+  <div>
+    <label for="prenom">Prénom :</label>
+    <input type="text" id="prenom" name="prenom" [(ngModel)]="emprunt.prenom" #prenom="ngModel" required />
+    <div *ngIf="prenom.invalid && (prenom.dirty || prenom.touched)">
+      Ce champ est obligatoire.
+    </div>
+  </div>
+
+  <div>
+    <label for="nom">Nom :</label>
+    <input type="text" id="nom" name="nom" [(ngModel)]="emprunt.nom" #nom="ngModel" required />
+    <div *ngIf="nom.invalid && (nom.dirty || nom.touched)" >
+      Ce champ est obligatoire.
+    </div>
+  </div>
+
+  <div>
+    <label for="dateEmprunt">Date d'emprunt :</label>
+    <input type="date" id="dateEmprunt" name="dateEmprunt" [(ngModel)]="emprunt.dateEmprunt" #dateEmprunt="ngModel" required />
+    <div *ngIf="dateEmprunt.invalid && (dateEmprunt.dirty || dateEmprunt.touched)" >
+      Ce champ est obligatoire.
+    </div>
+  </div>
+
+  <div>
+    <label for="dateRetour">Date de retour :</label>
+    <input type="date" id="dateRetour" name="dateRetour" [(ngModel)]="emprunt.dateRetour" #dateRetour="ngModel" required />
+    <div *ngIf="dateRetour.invalid && (dateRetour.dirty || dateRetour.touched)">
+      Ce champ est obligatoire.
+    </div>
+    <div *ngIf="dateRetourError" >
+      La date de retour doit être postérieure ou égale à la date d'emprunt.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="empruntForm.invalid">Valider</button>
+</form>
